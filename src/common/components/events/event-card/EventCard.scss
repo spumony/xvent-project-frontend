@@ -1,0 +1,45 @@
+@import "../../../../common/scss/variables.scss";
+
+.event-card-date {
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.event-card-desc {
+  font-weight: 600;
+  font-size: 0.85rem;
+  opacity: 0.5;
+}
+
+.event-card-share {
+  font-size: 1.3rem;
+  color: $gray;
+  padding-right: 15px;
+}
+
+.event-card-bookmark {
+  font-size: 1.3rem;
+  color: $pink;
+}
+
+.event-card-participants {
+  font-size: 1.5rem;
+  color: $gray;
+  padding-right: 15px;
+}
+
+.event-card-edit {
+  font-size: 1.6rem;
+  color: $gray;
+  padding-right: 15px;
+}
+
+.event-card-trash {
+  font-size: 1.5rem;
+  color: $pink;
+}
+
+.event-card-image {
+  // min-height: 200px;
+  background-color: gray;
+}

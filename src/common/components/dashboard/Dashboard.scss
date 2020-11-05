@@ -1,0 +1,16 @@
+.dashboard-welcome {
+  height: 100px;
+  width: 330px;
+  border-radius: 2rem;
+  background: rgb(2, 0, 36);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(13, 48, 236, 1) 0%,
+    rgba(120, 129, 241, 1) 100%
+  );
+}
+
+.dashboard-my-event {
+  font-size: 1.3rem;
+}

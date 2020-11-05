@@ -1,0 +1,29 @@
+@import "./../../scss/variables.scss";
+
+.sign-in {
+  background: url(./../../img/svg/bg-pattern.svg);
+  /* Full height */
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  /* Preserve aspet ratio */
+  min-width: 100%;
+  min-height: 100%;
+}
+
+.sign-in-card {
+  border-radius: 32px 32px 0px 0px;
+  background-color: #fff;
+  margin-top: 15%;
+  font-size: 0.8rem;
+}
+
+.sign-in-card-footer {
+  padding: 15px 0px 15px 0px;
+  background-color: $lavender;
+  border-radius: 0px 0px 32px 32px;
+  font-size: 0.75rem;
+  font-weight: 400;
+}

@@ -1,0 +1,27 @@
+@import "./variables.scss";
+
+.Toastify__toast--dark {
+  background: $oxford;
+  color: #fff;
+}
+.Toastify__toast--default {
+  background: $lavender;
+  color: $oxford;
+}
+.Toastify__toast--info {
+  background: $primary;
+}
+.Toastify__toast--success {
+  background: $green;
+}
+.Toastify__toast--warning {
+  background: $orange;
+}
+.Toastify__toast--error {
+  background: $pink;
+}
+
+// Border-radius
+.Toastify__toast {
+  border-radius: 0.5rem;
+}
