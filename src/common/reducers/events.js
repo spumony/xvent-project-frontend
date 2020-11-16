@@ -1,11 +1,14 @@
 import {
   GET_EVENTS,
+  GET_ALL_EVENTS,
   EVENTS_ERROR,
   CLEAR_EVENTS,
   CREATE_EVENT,
   EVENT,
   EDIT_PARTICIPANT_STATUS_SUCCESS,
   EDIT_PARTICIPANT_STATUS_ERROR,
+  CHECK_PARTICIPANT_STATUS,
+  REGISTER_ON_EVENT,
 } from "../actions/types";
 
 const initialState = {
@@ -15,6 +18,12 @@ const initialState = {
 };
 
 const getEvents = (state, events) => ({
+  ...state,
+  items: events,
+  loading: false,
+});
+
+const getAllEvents = (state, events) => ({
   ...state,
   items: events,
   loading: false,
@@ -88,12 +97,27 @@ const editParticipantStatusError = (state, error) => ({
   loading: false,
 });
 
+const checkParticipantStatus = (state, participant) => ({
+  ...state,
+  loading: false,
+  participant_status: participant,
+});
+
+const registerOnEvent = (state, participant) => ({
+  ...state,
+  loading: false,
+  participant_registered: participant,
+});
+
 export default function (state = initialState, action) {
   const { type, payload } = action;
 
   switch (type) {
     case GET_EVENTS:
       return getEvents(state, payload);
+
+    case GET_ALL_EVENTS:
+      return getAllEvents(state, payload);
 
     case CREATE_EVENT:
       return createEvent(state, payload);
@@ -130,6 +154,12 @@ export default function (state = initialState, action) {
 
     case EDIT_PARTICIPANT_STATUS_ERROR:
       return editParticipantStatusError(state, payload);
+
+    case CHECK_PARTICIPANT_STATUS:
+      return checkParticipantStatus(state, payload);
+
+    case REGISTER_ON_EVENT:
+      return registerOnEvent(state, payload);
 
     default:
       return state;

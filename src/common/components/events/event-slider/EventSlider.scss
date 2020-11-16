@@ -1,0 +1,16 @@
+.event-slider-carousel {
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.event-slider-img {
+  width: 100%;
+  height: 600px;
+  object-fit: cover;
+  object-position: top;
+}
+
+.event-slider-caption {
+  text-align: left;
+  color: red;
+}

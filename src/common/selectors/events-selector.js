@@ -9,3 +9,4 @@ export const getEventSelector = (state, props) => {
   const item = state.events.items.find((el) => el._id === props.id);
   return item || {};
 };
+export const getParticipantStatus = (state) => state.events?.participant_status || {};

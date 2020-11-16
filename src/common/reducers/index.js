@@ -4,5 +4,13 @@ import auth from "./auth";
 import notification from "./notification";
 import profile from "./profile";
 import events from "./events";
+import modal from "./modal-reducer";
 
-export default combineReducers({ alert, notification, auth, profile, events });
+export default combineReducers({
+  alert,
+  notification,
+  auth,
+  profile,
+  events,
+  modal,
+});

@@ -1,0 +1,14 @@
+@import "../../../scss/variables.scss";
+
+.footer2-s1 {
+  background: url(../../../img/svg/bg-pattern.svg);
+  margin-top: 300px;
+}
+
+.footer2-s2 {
+  background-color: $oxford;
+  border-radius: 32px;
+  color: $cloud;
+  top: -200px;
+  text-align: center;
+}

@@ -9,8 +9,11 @@ import store from "./common/store";
 import { loadUser } from "./common/actions/auth";
 import { getCurrentProfile } from "./common/actions/profile";
 import setAuthToken from "./common/utils/setAuthToken";
+import DeleteEvent from "./modals/delete-event-modal";
+import RegisterOnEvent from "./modals/register-on-event-modal";
 // Styles
 import "./App.scss";
+import CheckStatusModal from "./modals/check-status-modal";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -25,13 +28,15 @@ const App = () => {
   return (
     <Provider store={store}>
       <Router>
-        <>
-          <Notification />
-          <Switch>
-            <Route exact path="/" component={Landing} />
-            <Route component={Routes} />
-          </Switch>
-        </>
+        <Notification />
+        <DeleteEvent />
+        <CheckStatusModal />
+        <RegisterOnEvent />
+
+        <Switch>
+          <Route exact path="/" component={Landing} />
+          <Route component={Routes} />
+        </Switch>
       </Router>
     </Provider>
   );

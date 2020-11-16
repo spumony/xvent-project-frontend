@@ -27,19 +27,34 @@ const Profile = ({
                       <h4>{profile && profile.user.name}</h4>
                     </Col>
                     <Col lg={12}>
-                      <h6>Company: {profile && profile.company}</h6>
+                      <h6>
+                        <span className="font-weight-bold">Company:</span>{" "}
+                        {profile && profile.company}
+                      </h6>
                     </Col>
                     <Col lg={12}>
-                      <h6>Website: {profile && profile.website}</h6>
+                      <h6>
+                        <span className="font-weight-bold">Website:</span>{" "}
+                        {profile && profile.website}
+                      </h6>
                     </Col>
                     <Col lg={12}>
-                      <h6>Location: {profile && profile.location}</h6>
+                      <h6>
+                        <span className="font-weight-bold">Location:</span>{" "}
+                        {profile && profile.location}
+                      </h6>
                     </Col>
                     <Col lg={12}>
-                      <h6>Status: {profile && profile.status}</h6>
+                      <h6>
+                        <span className="font-weight-bold">Status:</span>{" "}
+                        {profile && profile.status}
+                      </h6>
                     </Col>
                     <Col lg={12}>
-                      <h6>Bio: {profile && profile.bio}</h6>
+                      <h6>
+                        <span className="font-weight-bold">Bio:</span>{" "}
+                        {profile && profile.bio}
+                      </h6>
                     </Col>
                     <Col lg={12}>
                       {profile && (

@@ -20,6 +20,9 @@ import CreateEvent from "../events/event-form/CreateEvent";
 import EditEvent from "../events/event-form/EditEvent";
 import EventParticipants from "../events/event-participants/EventParticipants";
 import NotFound from "../layout/NotFound";
+import EventPage from "../events/event-page/EventPage";
+import SingleEvent from "../events/single-event/SingleEvent";
+import Modal from "../modal/Modal";
 
 const Routes = (props) => {
   return (
@@ -28,6 +31,9 @@ const Routes = (props) => {
       <Switch>
         <Route exact path="/signup" component={SignUp} />
         <Route exact path="/signin" component={SignIn} />
+        <Route exact path="/events" component={EventPage} />
+        <Route path="/event/:id" component={SingleEvent} />
+        <Route path="/modal" component={Modal} />
         {/* <Route exact path="/profiles" component={Profiles} />
         <Route exact path="/profile/:id" component={Profile} /> */}
         <PrivateRoute exact path="/dashboard" component={Dashboard} />

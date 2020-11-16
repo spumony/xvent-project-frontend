@@ -40,6 +40,7 @@ const EditEvent = ({ history }) => {
       type: event.type,
       dateStart: event.dateStart,
       time: event.time,
+      image: event.image,
     },
   });
 
@@ -48,16 +49,16 @@ const EditEvent = ({ history }) => {
   }, []);
 
   // TO DO: useForm default values bug(quick fix)
-  useEffect(() => setValue("title", event.title), [event]);
-  useEffect(() => setValue("description", event.description), [event]);
-  useEffect(() => setValue("location", event.location), [event]);
-  useEffect(() => setValue("website", event.website), [event]);
-  useEffect(() => setValue("type", event.type), [event]);
-  useEffect(() => setValue("time", event.time), [event]);
-  useEffect(() => setValue("dateStart", "2000-01-01"), [event]);
-
-  // console.log(moment(event.dateStart, "YYYY-MM-DD").toJSON()); ??
-  // useEffect(() => setValue("dateStart", event.dateStart), [event]); ??
+  useEffect(() => {
+    setValue("title", event.title);
+    setValue("description", event.description);
+    setValue("location", event.location);
+    setValue("website", event.website);
+    setValue("type", event.type);
+    setValue("time", event.time);
+    setValue("dateStart", event.dateStart.split("T")[0]);
+    setValue("image", event.image);
+  }, [event]);
 
   const onSubmit = (data) => {
     dispatch(editEvent(data, history, params.id));
@@ -191,7 +192,7 @@ const EditEvent = ({ history }) => {
                 </Label>
               </FormGroup>
 
-              <Label for="type" className="mt-3 mr-sm-2 font-weight-bold">
+              <Label for="dateStart" className="mt-3 mr-sm-2 font-weight-bold">
                 Date
               </Label>
               <FormGroup>
@@ -203,12 +204,13 @@ const EditEvent = ({ history }) => {
                   innerRef={register}
                 />
               </FormGroup>
-              {errors.type && (
+              {errors.dateStart && (
                 <h6 className="mt-3 mb-2 text-muted" role="alert">
-                  {errors.type.message}
+                  {errors.dateStart.message}
                 </h6>
               )}
-              <Label for="type" className="mt-3 mr-sm-2 font-weight-bold">
+
+              <Label for="Time" className="mt-3 mr-sm-2 font-weight-bold">
                 Time
               </Label>
               <FormGroup>
@@ -220,23 +222,24 @@ const EditEvent = ({ history }) => {
                   innerRef={register}
                 />
               </FormGroup>
-              {errors.type && (
+              {errors.time && (
                 <h6 className="mt-3 mb-2 text-muted" role="alert">
-                  {errors.type.message}
+                  {errors.time.message}
                 </h6>
               )}
 
-              <Label for="location" className="mt-3 mr-sm-2 font-weight-bold">
+              <Label for="image" className="mt-3 mr-sm-2 font-weight-bold">
                 Image link
               </Label>
               <Input
                 placeholder="Image link"
                 name="image"
+                id="image"
                 innerRef={register}
               />
-              {errors.location && (
+              {errors.image && (
                 <h6 className="mt-3 mb-2 text-muted" role="alert">
-                  {errors.location.message}
+                  {errors.image.message}
                 </h6>
               )}
 

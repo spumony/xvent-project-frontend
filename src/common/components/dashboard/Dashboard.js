@@ -44,11 +44,13 @@ const Dashboard = ({
             </Col>
           </Row>
 
+
           <Row className="mt-5">
             <Col>
               <span className="font-weight-bold dashboard-my-event mr-5">
                 My Events
               </span>
+
 
               <Link to="/events/create-event">
                 <Button color="primary" size="sm">
@@ -59,7 +61,7 @@ const Dashboard = ({
             </Col>
           </Row>
           <Row className="d-flex align-items-center">
-              <EventList user={user} />
+            <EventList user={user} />
           </Row>
         </Container>
       </div>

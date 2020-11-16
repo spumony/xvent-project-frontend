@@ -17,20 +17,43 @@ import { motion } from "framer-motion";
 
 import Mockup from "../../../img/svg/318x180.svg";
 import "./EventCard.scss";
-import { deleteEvent } from "../../../actions/events";
+import { openModal } from "../../../actions/modal-actions";
 
 const EventCard = ({
-  event: { title, description, location, time, dateStart, type, _id },
+  event: {
+    title,
+    description,
+    location,
+    time,
+    dateStart,
+    type,
+    _id,
+    image = Mockup,
+  },
   user,
 }) => {
   const dispatch = useDispatch();
   const handleEventDelete = () => {
-    dispatch(deleteEvent(_id));
+    dispatch(openModal("example", { id: _id }));
   };
+
+  function copyCode() {
+    let copyText = `http://localhost:3000/event/${_id}`;
+    document.execCommand("copy");
+    alert("Link copied");
+
+    // dispatch(setNotification("Code copied", "success"));
+  }
+
+  // function handleClick(e) {
+  //   e.preventDefault();
+  //   copyCode();
+  // }
+
   return (
     <Card className="mt-3 mr-3">
-      <Link to="/">
-        <CardImg top width="100%" src={Mockup} alt="Card image" />
+      <Link to={`/event/${_id}`}>
+        <CardImg top width="100%" src={image} alt="Card image" />
       </Link>
       <CardBody>
         <CardTitle>
@@ -74,18 +97,17 @@ const EventCard = ({
           ) : (
             <>
               <Col className="text-right">
+                <motion.i
+                  onClick={copyCode}
+                  whileHover={{ scale: 1.2 }}
+                  whileTap={{ scale: 1.4 }}
+                  className="event-card-share fas fa-paper-plane"
+                ></motion.i>
                 <Link to="/">
                   <motion.i
                     whileHover={{ scale: 1.2 }}
                     whileTap={{ scale: 1.4 }}
-                    className="event-card-share fas fa-paper-plane"
-                  ></motion.i>
-                </Link>
-                <Link to="/">
-                  <motion.i
-                    whileHover={{ scale: 1.2 }}
-                    whileTap={{ scale: 1.4 }}
-                    className="event-card-bookmark fas fa-heart"
+                    className="event-card-bookmark far fa-heart"
                   ></motion.i>
                 </Link>
               </Col>

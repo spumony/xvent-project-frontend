@@ -1,14 +1,35 @@
 import axios from "axios";
+import { openModal } from "./modal-actions";
 import { setNotification } from "./notification";
 
 import {
   GET_EVENTS,
+  GET_ALL_EVENTS,
+  CHECK_PARTICIPANT_STATUS,
   EVENTS_ERROR,
   CREATE_EVENT,
   EVENT,
   EDIT_PARTICIPANT_STATUS_ERROR,
   EDIT_PARTICIPANT_STATUS_SUCCESS,
+  REGISTER_ON_EVENT,
 } from "./types";
+
+// Get all events
+export const getAllEvents = () => async (dispatch) => {
+  try {
+    const res = await axios.get("/api/events");
+
+    dispatch({
+      type: GET_ALL_EVENTS,
+      payload: res.data,
+    });
+  } catch (err) {
+    dispatch({
+      type: EVENTS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
 
 // Get current users events
 export const getCurrentEvents = () => async (dispatch) => {
@@ -67,6 +88,70 @@ export const createEvent = (formData, history) => async (dispatch) => {
     dispatch(setNotification("Event Created", "success"));
 
     history.push("/dashboard");
+  } catch (err) {
+    console.log(err.response);
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setNotification(error.msg, "warn")));
+    }
+
+    dispatch({
+      type: EVENTS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Check participant status
+export const checkParticipantStatus = (shortId) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post("/api/events/status", shortId, config);
+
+    dispatch({
+      type: CHECK_PARTICIPANT_STATUS,
+      payload: res.data,
+    });
+
+    dispatch(openModal("check-status", res.data));
+  } catch (err) {
+    console.log(err.response);
+    const errors = err.response.data.errors;
+
+    if (errors) {
+      errors.forEach((error) => dispatch(setNotification(error.msg, "warn")));
+    }
+
+    dispatch({
+      type: EVENTS_ERROR,
+      payload: { msg: err.response.statusText, status: err.response.status },
+    });
+  }
+};
+
+// Register on event
+export const registerOnEvent = (id, participant) => async (dispatch) => {
+  try {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+
+    const res = await axios.post(`/api/events/id/${id}`, participant, config);
+
+    dispatch({
+      type: REGISTER_ON_EVENT,
+      payload: res.data,
+    });
+
+    dispatch(openModal("register-on-event", res.data));
   } catch (err) {
     console.log(err.response);
     const errors = err.response.data.errors;
